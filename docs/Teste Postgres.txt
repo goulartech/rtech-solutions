@@ -1,0 +1,129 @@
+-- ============================================================================
+-- PROVA DE PROFICIÊNCIA EM BANCO DE DADOS - POSTGRESQL
+-- Sistema de Auxílio Transporte
+-- ============================================================================
+-- 1. CRIAÇÃO DAS TABELAS
+-- ============================================================================
+
+-- Conectar ao banco (executar \c prova_banco_dados no psql)
+
+-- Tabela de funcionários
+
+-- Tabela de solicitações de auxílio
+
+
+-- Tabela de pagamentos
+
+
+-- Tabela de log de auditoria
+
+
+-- ============================================================================
+-- 2. INSERÇÃO DE DADOS
+-- ============================================================================
+
+-- Inserção de funcionários (20 registros)
+
+
+-- Inserção de solicitações (25 registros com datas variadas)
+
+
+-- Inserção de pagamentos (20 registros)
+
+
+-- Inserção de logs de auditoria
+
+-- ============================================================================
+-- 3. QUESTÕES DA PROVA
+-- ============================================================================
+
+-- ---------------------------------------------------------------------------
+-- QUESTÃO 1 - JOIN e ORDER BY (2,0 pontos)
+-- ---------------------------------------------------------------------------
+/*
+Crie uma consulta que retorne:
+- Nome do funcionário
+- Matrícula
+- Departamento
+- Valor solicitado
+- Status da solicitação
+- Data da solicitação
+
+Requisitos:
+- Incluir APENAS solicitações com status 'APROVADO'
+- Ordenar por departamento (ordem alfabética) e depois por valor solicitado (do maior para o menor)
+- Incluir somente solicitações feitas nos últimos 6 meses
+*/
+
+-- ---------------------------------------------------------------------------
+-- QUESTÃO 2 - GROUP BY e HAVING (2,0 pontos)
+-- ---------------------------------------------------------------------------
+/*
+Crie uma consulta que mostre um relatório mensal de solicitações, contendo:
+- Ano e mês da solicitação
+- Quantidade total de solicitações
+- Valor total solicitado
+- Valor médio das solicitações
+- Quantidade de solicitações aprovadas
+
+Requisitos:
+- Agrupar por ano e mês
+- Mostrar APENAS os meses que tiveram mais de 10 solicitações
+- Ordenar do mês mais recente para o mais antigo
+- Formatar o ano/mês como 'YYYY-MM'
+*/
+
+-- ---------------------------------------------------------------------------
+-- QUESTÃO 3 - TRIGGER (2,0 pontos)
+-- ---------------------------------------------------------------------------
+/*
+Crie um TRIGGER que:
+- Seja acionado APÓS a inserção de um novo registro na tabela pagamentos
+- Atualize automaticamente o status da solicitação correspondente para 'PAGO'
+- Registre na tabela log_auditoria as informações da operação
+*/
+
+-- ---------------------------------------------------------------------------
+-- QUESTÃO 4 - STORED PROCEDURE (2,0 pontos)
+-- ---------------------------------------------------------------------------
+/*
+Crie uma STORED PROCEDURE chamada sp_cancelar_solicitacao que:
+- Receba ID da solicitação e motivo
+- Verifique se pode cancelar (não pode se já foi PAGO)
+- Atualize o status para CANCELADO
+- Registre no log
+- Retorne mensagem de sucesso ou erro
+*/
+
+
+-- ---------------------------------------------------------------------------
+-- QUESTÃO 5 - SUBCONSULTA e WINDOW FUNCTION (2,0 pontos)
+-- ---------------------------------------------------------------------------
+/*
+Crie uma consulta que identifique os funcionários "top gastadores":
+- Nome do funcionário
+- Departamento
+- Total gasto
+- Quantidade de solicitações aprovadas
+- Ranking dentro do departamento
+- Percentual do total do departamento
+
+Requisitos:
+- Apenas solicitações APROVADAS com pagamentos
+- TOP 3 de cada departamento
+- Percentual com 2 casas decimais
+*/
+
+
+-- ============================================================================
+-- 4. TESTES E VALIDAÇÕES
+-- ============================================================================
+Faça alguns testes abaixo, podendo criar cenários e inserts aleatórios, conforme orientação.
+
+-- Teste da Procedure (PostgreSQL usa SELECT em vez de CALL)
+
+-- Verificar trigger (inserir novo pagamento)
+
+-- Verificar se o status foi atualizado
+
+-- Verificar log de auditoria

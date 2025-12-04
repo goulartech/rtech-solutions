@@ -1,0 +1,596 @@
+{
+	"info": {
+		"_postman_id": "rtech-solicitations-api",
+		"name": "RTech - API de Solicitações Internas",
+		"description": "Collection completa da API de Solicitações Internas desenvolvida para o processo seletivo da RTech.\n\nInclui todas as operações CRUD, ações de workflow (aprovar, rejeitar, cancelar), filtros avançados e estatísticas.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Solicitações - CRUD",
+			"item": [
+				{
+					"name": "Listar Todas as Solicitações",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""]
+						},
+						"description": "Lista todas as solicitações com paginação. Retorna 10 itens por página por padrão."
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Solicitação de Férias",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipo\": \"ferias\",\n  \"titulo\": \"Férias de Verão 2025\",\n  \"descricao\": \"Férias programadas para janeiro de 2025\",\n  \"solicitante\": \"João Silva\",\n  \"data_inicio\": \"2025-01-15\",\n  \"data_fim\": \"2025-01-29\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""]
+						},
+						"description": "Cria uma nova solicitação de férias. Requer data_inicio e data_fim."
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Solicitação de Reembolso",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipo\": \"reembolso\",\n  \"titulo\": \"Reembolso de Transporte - Projeto X\",\n  \"descricao\": \"Despesas com transporte durante o desenvolvimento do Projeto X\",\n  \"solicitante\": \"Maria Santos\",\n  \"valor\": \"350.00\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""]
+						},
+						"description": "Cria uma nova solicitação de reembolso. Requer valor."
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Solicitação de Treinamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipo\": \"treinamento\",\n  \"titulo\": \"Curso Django REST Framework Avançado\",\n  \"descricao\": \"Treinamento completo em Django REST Framework\",\n  \"solicitante\": \"Carlos Souza\",\n  \"valor\": \"1500.00\",\n  \"data_inicio\": \"2025-03-10\",\n  \"data_fim\": \"2025-03-12\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""]
+						},
+						"description": "Cria uma nova solicitação de treinamento. Requer valor, data_inicio e data_fim."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Detalhes de Solicitação",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/1/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", "1", ""]
+						},
+						"description": "Busca os detalhes completos de uma solicitação específica pelo ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Solicitação (Parcial)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Férias de Verão 2025 - Atualizado\",\n  \"observacoes\": \"Data confirmada com a equipe\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/1/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", "1", ""]
+						},
+						"description": "Atualiza parcialmente uma solicitação. Apenas campos fornecidos serão atualizados."
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Solicitação (Completa)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Férias de Verão 2025 - Completo\",\n  \"descricao\": \"Férias programadas e confirmadas\",\n  \"valor\": null,\n  \"data_inicio\": \"2025-01-15\",\n  \"data_fim\": \"2025-01-29\",\n  \"observacoes\": \"Aprovado pela gerência\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/1/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", "1", ""]
+						},
+						"description": "Atualiza completamente uma solicitação. Todos os campos devem ser fornecidos."
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Solicitação",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/1/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", "1", ""]
+						},
+						"description": "Exclui uma solicitação. Não é possível excluir solicitações aprovadas."
+					},
+					"response": []
+				}
+			],
+			"description": "Operações CRUD básicas para gerenciamento de solicitações."
+		},
+		{
+			"name": "Ações de Workflow",
+			"item": [
+				{
+					"name": "Aprovar Solicitação",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"observacoes\": \"Aprovado pela gerência de RH\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/1/aprovar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", "1", "aprovar", ""]
+						},
+						"description": "Aprova uma solicitação. Apenas solicitações com status 'pendente' ou 'em_analise' podem ser aprovadas."
+					},
+					"response": []
+				},
+				{
+					"name": "Rejeitar Solicitação",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"observacoes\": \"Período não disponível no calendário da empresa\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/2/rejeitar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", "2", "rejeitar", ""]
+						},
+						"description": "Rejeita uma solicitação. Apenas solicitações com status 'pendente' ou 'em_analise' podem ser rejeitadas."
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar Solicitação",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"observacoes\": \"Cancelado a pedido do solicitante\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/3/cancelar/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", "3", "cancelar", ""]
+						},
+						"description": "Cancela uma solicitação. Apenas solicitações com status 'pendente' ou 'em_analise' podem ser canceladas."
+					},
+					"response": []
+				}
+			],
+			"description": "Ações de workflow para mudar o status das solicitações."
+		},
+		{
+			"name": "Filtros e Buscas",
+			"item": [
+				{
+					"name": "Filtrar por Tipo (Férias)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/?tipo=ferias",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "ferias",
+									"description": "Tipos: ferias, reembolso, treinamento"
+								}
+							]
+						},
+						"description": "Filtra solicitações por tipo. Valores aceitos: ferias, reembolso, treinamento."
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar por Status (Pendente)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/?status=pendente",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""],
+							"query": [
+								{
+									"key": "status",
+									"value": "pendente",
+									"description": "Status: pendente, em_analise, aprovado, rejeitado, cancelado"
+								}
+							]
+						},
+						"description": "Filtra solicitações por status. Valores aceitos: pendente, em_analise, aprovado, rejeitado, cancelado."
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar por Múltiplos Tipos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/?tipo=ferias&tipo=reembolso",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "ferias"
+								},
+								{
+									"key": "tipo",
+									"value": "reembolso"
+								}
+							]
+						},
+						"description": "Filtra por múltiplos tipos simultaneamente."
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar por Solicitante",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/?solicitante=Maria",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""],
+							"query": [
+								{
+									"key": "solicitante",
+									"value": "Maria",
+									"description": "Busca case-insensitive"
+								}
+							]
+						},
+						"description": "Filtra solicitações por nome do solicitante (busca parcial, case-insensitive)."
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar por Faixa de Valor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/?valor_min=100&valor_max=1000",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""],
+							"query": [
+								{
+									"key": "valor_min",
+									"value": "100"
+								},
+								{
+									"key": "valor_max",
+									"value": "1000"
+								}
+							]
+						},
+						"description": "Filtra solicitações por faixa de valores."
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar por Data de Criação",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/?data_criacao_min=2025-01-01&data_criacao_max=2025-12-31",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""],
+							"query": [
+								{
+									"key": "data_criacao_min",
+									"value": "2025-01-01"
+								},
+								{
+									"key": "data_criacao_max",
+									"value": "2025-12-31"
+								}
+							]
+						},
+						"description": "Filtra solicitações por período de criação."
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por Texto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/?search=transporte",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""],
+							"query": [
+								{
+									"key": "search",
+									"value": "transporte",
+									"description": "Busca em título, descrição e solicitante"
+								}
+							]
+						},
+						"description": "Busca textual em título, descrição e nome do solicitante."
+					},
+					"response": []
+				},
+				{
+					"name": "Filtros Combinados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/?tipo=reembolso&status=pendente&valor_min=100&ordering=-data_criacao",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "reembolso"
+								},
+								{
+									"key": "status",
+									"value": "pendente"
+								},
+								{
+									"key": "valor_min",
+									"value": "100"
+								},
+								{
+									"key": "ordering",
+									"value": "-data_criacao",
+									"description": "Ordenar: data_criacao, -data_criacao, valor, -valor"
+								}
+							]
+						},
+						"description": "Exemplo de uso de múltiplos filtros combinados com ordenação."
+					},
+					"response": []
+				}
+			],
+			"description": "Exemplos de filtros, buscas e ordenação disponíveis na API."
+		},
+		{
+			"name": "Paginação e Ordenação",
+			"item": [
+				{
+					"name": "Listar com Paginação (Página 2)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/?page=2",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Acessa a segunda página de resultados (10 itens por página)."
+					},
+					"response": []
+				},
+				{
+					"name": "Ordenar por Data de Criação (Crescente)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/?ordering=data_criacao",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "data_criacao"
+								}
+							]
+						},
+						"description": "Ordena resultados por data de criação (mais antiga primeiro)."
+					},
+					"response": []
+				},
+				{
+					"name": "Ordenar por Data de Criação (Decrescente)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/?ordering=-data_criacao",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "-data_criacao"
+								}
+							]
+						},
+						"description": "Ordena resultados por data de criação (mais recente primeiro)."
+					},
+					"response": []
+				},
+				{
+					"name": "Ordenar por Valor (Decrescente)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/?ordering=-valor",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", ""],
+							"query": [
+								{
+									"key": "ordering",
+									"value": "-valor"
+								}
+							]
+						},
+						"description": "Ordena resultados por valor (maior para menor)."
+					},
+					"response": []
+				}
+			],
+			"description": "Exemplos de paginação e diferentes opções de ordenação."
+		},
+		{
+			"name": "Estatísticas",
+			"item": [
+				{
+					"name": "Obter Estatísticas Gerais",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/estatisticas/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", "estatisticas", ""]
+						},
+						"description": "Retorna estatísticas agregadas: total de solicitações, contagem por tipo, contagem por status e valor total aprovado."
+					},
+					"response": []
+				},
+				{
+					"name": "Estatísticas com Filtro por Tipo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/estatisticas/?tipo=reembolso",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", "estatisticas", ""],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "reembolso"
+								}
+							]
+						},
+						"description": "Estatísticas filtradas por tipo específico."
+					},
+					"response": []
+				},
+				{
+					"name": "Estatísticas com Filtro por Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/solicitacoes/estatisticas/?data_criacao_min=2025-01-01",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "solicitacoes", "estatisticas", ""],
+							"query": [
+								{
+									"key": "data_criacao_min",
+									"value": "2025-01-01"
+								}
+							]
+						},
+						"description": "Estatísticas de solicitações criadas a partir de uma data específica."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para obter estatísticas e métricas das solicitações."
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
