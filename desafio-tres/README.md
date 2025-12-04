@@ -109,12 +109,15 @@ src/
 - **Warning**: Amarelo - Notas regulares (≥5.0 e <7.0)
 - **Danger**: Vermelho - Notas baixas (<5.0)
 
+## Screenshots
+
+![Screenshot 1](screenshots/desafio-tres%201.png)
+
+![Screenshot 2](screenshots/desafio-tres%202.png)
+
 ## Armazenamento
 
-Os dados são mantidos **em memória** durante a sessão. Para persistência, considere implementar:
-- LocalStorage para navegador
-- Backend API com banco de dados
-- State management libraries (Redux, Zustand)
+Os dados são mantidos **em memória** durante a sessão.
 
 ## Testando a Aplicação
 

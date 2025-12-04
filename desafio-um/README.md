@@ -183,6 +183,18 @@ Execute o script de exemplo incluído:
 python exemplo_uso_api.py
 ```
 
+## Screenshots
+
+![Screenshot 1](screenshots/desafio-um%201.png)
+
+![Screenshot 2](screenshots/desafio-um%202.png)
+
+![Screenshot 3](screenshots/desafio-um%203.png)
+
+![Screenshot 4](screenshots/desafio-um%204.png)
+
+![Screenshot 5](screenshots/desafio-um%205.png)
+
 ## Testes
 
 Execute os testes com:

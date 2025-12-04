@@ -165,6 +165,24 @@ http://localhost:8501
 - **Atualizar**: Modifique solicitações existentes
 - **Excluir**: Remova solicitações com confirmação
 
+## Screenshots
+
+![Screenshot 1](screenshots/desafio-dois%201.png)
+
+![Screenshot 2](screenshots/desafio-dois%202.png)
+
+![Screenshot 3](screenshots/desafio-dois%203.png)
+
+![Screenshot 4](screenshots/desafio-dois%204.png)
+
+![Screenshot 5](screenshots/desafio-dois%205.png)
+
+![Screenshot 6](screenshots/desafio-dois%206.png)
+
+![Screenshot 7](screenshots/desafio-dois%207.png)
+
+![Screenshot 8](screenshots/desafio-dois%208.png)
+
 ## Testes
 
 ### Executar todos os testes
