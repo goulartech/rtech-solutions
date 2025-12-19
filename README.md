@@ -1,6 +1,6 @@
 # RTech Solutions - Processo Seletivo
 
-Repositório desenvolvido para processo seletivo de **Desenvolvedor Fullstack Pleno**, contendo 3 desafios práticos, questões teóricas e teste de banco de dados.
+Repositório desenvolvido para processo seletivo de **Desenvolvedor Fullstack**, contendo 3 desafios práticos, questões teóricas e teste de banco de dados.
 
 ## Estrutura do Projeto
 
@@ -147,7 +147,7 @@ rtech-solutions/
 
 ## Contato
 
-Desenvolvido por **Luiz** - Desenvolvedor Fullstack Pleno
+Desenvolvido por **Luiz** - Desenvolvedor Fullstack
 
 ---
 
